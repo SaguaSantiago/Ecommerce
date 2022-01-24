@@ -2,14 +2,14 @@ import { Button } from "@mui/material"
 import React from "react"
 import { useHistory } from "react-router-dom"
 
-export default function HomePage() {
+export default function LoginPage() {
   let history = useHistory()
   function handleClick() {
-    history.push("/login")
+    history.push("/")
   }
   return (
     <>
-      <h1>Home</h1>
+      <h1>Login</h1>
       <Button onClick={handleClick}>asda</Button>
     </>
   )
