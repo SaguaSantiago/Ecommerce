@@ -1,6 +1,6 @@
 import React from "react"
 
-import { ThemeProvider } from "@mui/material"
+import { ThemeProvider, CssBaseline } from "@mui/material"
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import PublicRoute from "./Routes/PublicRoute"
@@ -14,9 +14,10 @@ import CarritoPage from "./Components/pages/CarritoPage"
 import PerfilPage from "./Components/pages/PerfilPage"
 
 function App() {
-  const auth = false
+  const auth = true
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Router>
         {auth ? <DashboardLayout /> : <PublicLayout />}
         <Switch>

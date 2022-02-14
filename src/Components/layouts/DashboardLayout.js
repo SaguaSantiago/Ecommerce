@@ -7,6 +7,7 @@ import { ThemeProvider } from "@emotion/react"
 import { NavLink } from "react-router-dom"
 import { layout } from "../../CustomThemes"
 import { DashboardNavButtons } from "../../objects"
+import LayoutMenu from "./PublicLayout/Menu"
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -51,6 +52,7 @@ export default function Layout() {
                 </NavLink>
               </Button>
             ))}
+            <LayoutMenu/>
           </ThemeProvider>
         </Toolbar>
       </AppBar>

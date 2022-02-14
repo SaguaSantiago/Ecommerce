@@ -1,32 +1,18 @@
-import { Button, Paper } from "@mui/material"
-import { makeStyles } from "@mui/styles"
-import { Form, Formik } from "formik"
 import React from "react"
-import CustomTextfield from "../CustomComponents/CustomTextfield"
-import * as yup from "yup"
 
-const useStyles = makeStyles({
-  paper: {
-    maxWidth: "50%",
-  },
-})
+import { Button, Paper, Typography } from "@mui/material"
+import CustomTextfield from "../CustomComponents/CustomTextfield"
+
+import { Form, Formik } from "formik"
+import { Styles } from "../../Styles"
+import { textfieldsLoginObject } from "../../objects"
+import { LoginValidation } from "../../Validations/LoginValidation"
+
+const useStyles = Styles.loginStyles
 
 export default function LoginPage() {
   const classes = useStyles()
-  const textfieldsObject = [
-    {
-      name: "usuary",
-      label: "Nombre de Usuario",
-      key: 1,
-      type: "text",
-    },
-    {
-      name: "password",
-      label: "Contraseña",
-      key: 2,
-      type: "password",
-    },
-  ]
+
   return (
     <Formik
       initialValues={{
@@ -36,34 +22,41 @@ export default function LoginPage() {
       onSubmit={(valores) => {
         console.log(valores)
       }}
-      validationSchema={yup.object({
-        usuary: yup
-          .string()
-          .required("Este campo es obligatorio")
-          .min(6, "Debe contener al menos 6 caracteres")
-          .max(15, "Debe contener mas de 15 caracteres"),
-        password: yup.string().required("Este campo es obligatorio"),
-      })}
+      validationSchema={LoginValidation}
     >
       {() => (
-        <Paper classname={classes.paper}>
+        <Paper className={classes.paper}>
+          <div className={classes.Typography}>
+            <Typography color="secondary" variant="h4" align="center">
+              Iniciar Sesión
+            </Typography>
+          </div>
           <Form autoComplete="off">
             <div>
-              {textfieldsObject.map(({ name, label, key, type }) => (
-                <CustomTextfield
-                  key={key}
-                  color="secondary"
-                  name={name}
-                  variant="standard"
-                  label={label}
-                  type={type}
-                  variant="filled"
-                />
+              {textfieldsLoginObject.map(({ name, label, key, type }) => (
+                <div className={classes.textfield}>
+                  <CustomTextfield
+                    key={key}
+                    color="secondary"
+                    name={name}
+                    variant="standard"
+                    label={label}
+                    type={type}
+                    variant="filled"
+                    className={classes.textfield}
+                    fullWidth
+                  />
+                </div>
               ))}
             </div>
-            <div>
-              <Button color="secondary" variant="contained" type="submit">
-                Enviar
+            <div className={classes.button}>
+              <Button
+                fullWidth
+                color="secondary"
+                variant="contained"
+                type="submit"
+              >
+                Iniciar Sesión
               </Button>
             </div>
           </Form>
