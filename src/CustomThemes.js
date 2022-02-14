@@ -23,6 +23,12 @@ export const theme = createTheme({
       main: "#830505",
     },
   },
+  typography: {
+    overline: {
+      fontFamily: "'Trebuchet MS', sans-serif",
+      fontSize: "1rem",
+    },
+  },
 })
 
 export const layout = createTheme({
