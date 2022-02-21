@@ -7,6 +7,7 @@ import PublicRoute from "./Routes/PublicRoute"
 import PrivateRoute from "./Routes/PrivateRoute"
 import { theme } from "./CustomThemes"
 import HomePage from "./Components/pages/HomePage"
+import RegisterPage from "./Components/pages/RegisterPage"
 import PublicLayout from "./Components/layouts/PublicLayout"
 import DashboardLayout from "./Components/layouts/DashboardLayout"
 import LoginPage from "./Components/pages/LoginPage"
@@ -14,7 +15,7 @@ import CarritoPage from "./Components/pages/CarritoPage"
 import PerfilPage from "./Components/pages/PerfilPage"
 
 function App() {
-  const auth = true
+  const auth = false
 
   return (
     <ThemeProvider theme={theme}>
@@ -23,6 +24,7 @@ function App() {
         {auth ? <DashboardLayout /> : <PublicLayout />}
         <Switch>
           <PublicRoute exact auth={auth} path="/login" component={LoginPage} />
+          <PublicRoute exact auth={auth} path="/register" component={RegisterPage}/>
           <PrivateRoute
             exact
             auth={auth}

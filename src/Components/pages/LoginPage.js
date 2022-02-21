@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Button, Paper, Typography } from "@mui/material"
+import { Button, Grid, Paper, Typography } from "@mui/material"
 import CustomTextfield from "../CustomComponents/CustomTextfield"
 
 import { Form, Formik } from "formik"
@@ -26,40 +26,47 @@ export default function LoginPage() {
     >
       {() => (
         <Paper className={classes.paper}>
-          <div className={classes.Typography}>
-            <Typography color="secondary" variant="h4" align="center">
-              Iniciar Sesión
-            </Typography>
-          </div>
-          <Form autoComplete="off">
-            <div>
-              {textfieldsLoginObject.map(({ name, label, key, type }) => (
-                <div className={classes.textfield}>
-                  <CustomTextfield
-                    key={key}
-                    color="secondary"
-                    name={name}
-                    variant="standard"
-                    label={label}
-                    type={type}
-                    variant="filled"
-                    className={classes.textfield}
-                    fullWidth
-                  />
-                </div>
-              ))}
-            </div>
-            <div className={classes.button}>
-              <Button
-                fullWidth
-                color="secondary"
-                variant="contained"
-                type="submit"
-              >
+          <Grid alignItems="center" container>
+            <Grid item xs={12} sx={{ marginBottom: "40px" }}>
+              <Typography color="secondary" variant="h4" align="center">
                 Iniciar Sesión
-              </Button>
-            </div>
-          </Form>
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Form autoComplete="off">
+                <Grid
+                  justifyContent="center"
+                  spacing={3}
+                  alignItems="center"
+                  container
+                >
+                  {textfieldsLoginObject.map(({ name, label, key, type }) => (
+                    <Grid xs={12} sm={8.4} item key={key}>
+                      <CustomTextfield
+                        color="secondary"
+                        name={name}
+                        label={label}
+                        type={type}
+                        variant="filled"
+                        fullWidth
+                      />
+                    </Grid>
+                  ))}
+                  <Grid item xs={12} sm={7.2}>
+                    <Button
+                      size="large"
+                      fullWidth
+                      color="secondary"
+                      variant="contained"
+                      type="submit"
+                    >
+                      Iniciar Sesión
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Form>
+            </Grid>
+          </Grid>
         </Paper>
       )}
     </Formik>

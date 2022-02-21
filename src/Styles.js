@@ -16,7 +16,7 @@ const loginStyles = makeStyles({
       marginBottom: "20px",
     },
     button: {
-      width: "60%",
+      // width: "60%",
       marginLeft: "auto",
       marginRight: "auto",
     },

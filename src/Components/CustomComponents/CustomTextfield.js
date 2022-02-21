@@ -15,9 +15,11 @@ export default function CustomTextfield({ ...props }) {
   }
 
   return (
-    <div>
+    <>
       <TextField {...field} {...props} error={meta.touched && meta.error} />
-      <Errors error={meta.touched && meta.error} />
-    </div>
+      <div>
+        <Errors error={meta.touched && meta.error} />
+      </div>
+    </>
   )
 }

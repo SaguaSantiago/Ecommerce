@@ -12,6 +12,12 @@ export const PublicNavButtons = [
     to: "/login",
     key: 1,
   },
+  {
+    name: "Register",
+    startIcon: <AppRegistrationIcon/>,
+    to: "/register",
+    key: 2
+  }
 ]
 
 export const DashboardNavButtons = [
