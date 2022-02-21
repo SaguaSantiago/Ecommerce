@@ -15,6 +15,7 @@ import PerfilPage from "./Components/pages/PerfilPage"
 
 function App() {
   const auth = true
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

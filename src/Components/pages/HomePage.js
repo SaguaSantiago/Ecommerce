@@ -16,9 +16,9 @@ const useStyles = makeStyles({
     width: "60vw",
     height: "85vh",
     color: "white",
-    boxShadow: "6px 2px 16px 0px rgba(82,76,76,0.56)",
-    WebkitBoxShadow: "6px 2px 16px 0px rgba(82,76,76,0.56)",
-    mozBoxShadow: "6px 2px 16px 0px rgba(82,76,76,0.56)",
+    boxShadow: "6px 7px 13px 0px rgba(0,0,0,0.65)",
+    webkitBoxShadow: "6px 7px 13px 0px rgba(0,0,0,0.65)",
+    mozBoxShadow: "6px 7px 13px 0px rgba(0,0,0,0.65)",
   },
   isLogin: {
     fontFamily: "'Courier New', monospace",
@@ -28,7 +28,10 @@ const useStyles = makeStyles({
     textAlign: "center",
   },
   Search: {
-    margin: "0 auto",
+    margin: "10px auto",
+  },
+  contenedorSpan: {
+    margin: "10px auto",
   },
 })
 
@@ -38,7 +41,7 @@ export default function HomePage() {
   return (
     <Grid container>
       <Grid item xs={12} sm={7.5} className={classes.imagePresentation}>
-        <div container className={classes.contenedorSpan}>
+        <div className={classes.contenedorSpan}>
           <Typography
             variant="outline"
             textAlign="center"

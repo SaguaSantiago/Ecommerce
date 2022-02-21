@@ -7,7 +7,7 @@ import { ThemeProvider } from "@emotion/react"
 import { NavLink } from "react-router-dom"
 import { layout } from "../../CustomThemes"
 import { DashboardNavButtons } from "../../objects"
-import LayoutMenu from "./PublicLayout/Menu"
+import LayoutMenu from "./DashboardLayout/Menu"
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -39,7 +39,7 @@ export default function Layout() {
                 </Typography>
               </Button>
             </div>
-            {DashboardNavButtons.map(({ name, startIcon, to }) => (
+            {/* {DashboardNavButtons.map(({ name, startIcon, to }) => (
               <Button
                 className={classes.Buttons}
                 size="small"
@@ -51,8 +51,8 @@ export default function Layout() {
                   {name}
                 </NavLink>
               </Button>
-            ))}
-            <LayoutMenu/>
+            ))} */}
+            <LayoutMenu />
           </ThemeProvider>
         </Toolbar>
       </AppBar>
