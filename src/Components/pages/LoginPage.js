@@ -1,4 +1,5 @@
 import React from "react"
+import { MyPromise } from "./../../Redux"
 
 import { Button, Grid, Paper, Typography } from "@mui/material"
 import CustomTextfield from "../CustomComponents/CustomTextfield"
@@ -7,11 +8,15 @@ import { Form, Formik } from "formik"
 import { Styles } from "../../Styles"
 import { textfieldsLoginObject } from "../../objects"
 import { LoginValidation } from "../../Validations/LoginValidation"
+import { useDispatch } from "react-redux"
+import { Login } from "../../Redux/Actions/AuthActions"
+import {GetUsuaries} from "./../../Redux/Actions"
 
 const useStyles = Styles.loginStyles
 
 export default function LoginPage() {
   const classes = useStyles()
+  const dispatch = useDispatch()
 
   return (
     <Formik
@@ -20,8 +25,8 @@ export default function LoginPage() {
         password: "",
       }}
       onSubmit={(valores) => {
-        console.log(valores)
-      }}
+        MyPromise.then(response => dispatch(GetUsuaries(response.data))
+      }
       validationSchema={LoginValidation}
     >
       {() => (

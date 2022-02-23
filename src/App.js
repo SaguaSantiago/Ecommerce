@@ -13,9 +13,13 @@ import DashboardLayout from "./Components/layouts/DashboardLayout"
 import LoginPage from "./Components/pages/LoginPage"
 import CarritoPage from "./Components/pages/CarritoPage"
 import PerfilPage from "./Components/pages/PerfilPage"
+import { useSelector } from "react-redux"
 
 function App() {
-  const auth = false
+  const auth = useSelector((store) => {
+    localStorage.setItem("login", "true")
+    return store.auth
+  })
 
   return (
     <ThemeProvider theme={theme}>
@@ -24,7 +28,12 @@ function App() {
         {auth ? <DashboardLayout /> : <PublicLayout />}
         <Switch>
           <PublicRoute exact auth={auth} path="/login" component={LoginPage} />
-          <PublicRoute exact auth={auth} path="/register" component={RegisterPage}/>
+          <PublicRoute
+            exact
+            auth={auth}
+            path="/register"
+            component={RegisterPage}
+          />
           <PrivateRoute
             exact
             auth={auth}

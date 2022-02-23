@@ -1,0 +1,8 @@
+export const ActionTypes = {
+  AUTH_LOGIN: "AUTH_LOGIN",
+  AUTH_SIGN_OFF: "AUTH_SIGN_OFF",
+  //usuaries Reducer
+
+  GET_USUARIES: "GET_USUARIES",
+  REMOVE_USUARIES: "REMOVE_USUARIES",
+}
