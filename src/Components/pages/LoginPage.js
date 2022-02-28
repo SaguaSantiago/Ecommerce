@@ -1,21 +1,18 @@
 import React from "react"
-import { MyPromise } from "./../../Redux"
 
-import { Button, Grid, Paper, Typography } from "@mui/material"
-import CustomTextfield from "../CustomComponents/CustomTextfield"
+import { Grid, Typography } from "@mui/material"
 
-import { Form, Formik } from "formik"
-import { Styles } from "../../Styles"
+import { Formik } from "formik"
 import { textfieldsLoginObject } from "../../objects"
 import { LoginValidation } from "../../Validations/LoginValidation"
 import { useDispatch } from "react-redux"
 import { Login } from "../../Redux/Actions/AuthActions"
-import {GetUsuaries} from "./../../Redux/Actions"
-
-const useStyles = Styles.loginStyles
+import { MyPromise } from "./../../Redux/Promise"
+import { GetUsuaries } from "./../../Redux/Actions/UsuariesActions"
+import CustomForm from "../CustomComponents/CustomForm"
+import CustomTextfield from "../CustomComponents/CustomTextfield"
 
 export default function LoginPage() {
-  const classes = useStyles()
   const dispatch = useDispatch()
 
   return (
@@ -25,54 +22,28 @@ export default function LoginPage() {
         password: "",
       }}
       onSubmit={(valores) => {
-        MyPromise.then(response => dispatch(GetUsuaries(response.data))
-      }
+        dispatch(Login())
+        console.log(valores)
+      }}
       validationSchema={LoginValidation}
     >
       {() => (
-        <Paper className={classes.paper}>
-          <Grid alignItems="center" container>
-            <Grid item xs={12} sx={{ marginBottom: "40px" }}>
-              <Typography color="secondary" variant="h4" align="center">
-                Iniciar Sesión
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Form autoComplete="off">
-                <Grid
-                  justifyContent="center"
-                  spacing={3}
-                  alignItems="center"
-                  container
-                >
-                  {textfieldsLoginObject.map(({ name, label, key, type }) => (
-                    <Grid xs={12} sm={8.4} item key={key}>
-                      <CustomTextfield
-                        color="secondary"
-                        name={name}
-                        label={label}
-                        type={type}
-                        variant="filled"
-                        fullWidth
-                      />
-                    </Grid>
-                  ))}
-                  <Grid item xs={12} sm={7.2}>
-                    <Button
-                      size="large"
-                      fullWidth
-                      color="secondary"
-                      variant="contained"
-                      type="submit"
-                    >
-                      Iniciar Sesión
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Form>
-            </Grid>
-          </Grid>
-        </Paper>
+        <>
+          <CustomForm typography="Iniciar Sesión" button="Iniciar Sesión" caption="¿Aun no tienes cuenta?">
+            {textfieldsLoginObject.map(({ name, label, key, type }) => (
+              <Grid xs={12} sm={8.4} item key={key}>
+                <CustomTextfield
+                  color="secondary"
+                  name={name}
+                  label={label}
+                  type={type}
+                  variant="filled"
+                  fullWidth
+                />
+              </Grid>
+            ))}
+          </CustomForm>
+        </>
       )}
     </Formik>
   )

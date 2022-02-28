@@ -6,7 +6,6 @@ import { ThemeProvider } from "@emotion/react"
 
 import { NavLink } from "react-router-dom"
 import { layout } from "../../CustomThemes"
-import { DashboardNavButtons } from "../../objects"
 import LayoutMenu from "./DashboardLayout/Menu"
 
 const useStyles = makeStyles((theme) => ({
@@ -39,19 +38,6 @@ export default function Layout() {
                 </Typography>
               </Button>
             </div>
-            {/* {DashboardNavButtons.map(({ name, startIcon, to }) => (
-              <Button
-                className={classes.Buttons}
-                size="small"
-                variant="outlined"
-                style={{ color: "white", marginLeft: "10px" }}
-                startIcon={startIcon}
-              >
-                <NavLink className={classes.NavLink} to={to}>
-                  {name}
-                </NavLink>
-              </Button>
-            ))} */}
             <LayoutMenu />
           </ThemeProvider>
         </Toolbar>

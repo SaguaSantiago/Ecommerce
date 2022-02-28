@@ -1,14 +1,15 @@
-import { Paper } from "@mui/material"
+import { Grid } from "@mui/material"
 import { Formik } from "formik"
 import React from "react"
-import { Styles } from "../../Styles"
+import { RegisterValidation } from "../../Validations/RegisterValidation"
+import CustomForm from "../CustomComponents/CustomForm"
 import CustomTextfield from "../CustomComponents/CustomTextfield"
 
-const useStyles = Styles.loginStyles
-
 export default function RegisterPage() {
-  const classes = useStyles()
   const registerTextfields = [
+    { name: "name", label: "Nombre", type: "text" },
+
+    { name: "lastName", label: "Apellido", type: "text" },
     {
       name: "userName",
       label: "Nombre de Usuario",
@@ -31,24 +32,43 @@ export default function RegisterPage() {
     },
   ]
   return (
-    <Formik>
+    <Formik
+      initialValues={{
+        userName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        name: "",
+        lastName: "",
+      }}
+      onSubmit={(valores) => {
+        console.log(valores)
+      }}
+      validationSchema={RegisterValidation}
+    >
       {() => (
-        <Paper className={classes.paper}>
-          <form>
-            {registerTextfields.map(({ name, label, type }) => (
-              <div key={name}>
-                <CustomTextfield
-                  fullwidth="true"
-                  variant="filled"
-                  color="secondary"
-                  name={name}
-                  label={label}
-                  type={type}
-                />
-              </div>
-            ))}
-          </form>
-        </Paper>
+        <CustomForm typography="Registrarse" button="Registrarse">
+          {registerTextfields.map(({ name, label, type }) => (
+            <Grid
+              xs={6}
+              sm={6}
+              sx={{
+                marginBottom: "10px",
+              }}
+              item
+              key={name}
+            >
+              <CustomTextfield
+                fullWidth
+                variant="filled"
+                color="secondary"
+                name={name}
+                label={label}
+                type={type}
+              />
+            </Grid>
+          ))}
+        </CustomForm>
       )}
     </Formik>
   )
