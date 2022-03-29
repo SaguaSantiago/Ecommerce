@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 import { ThemeProvider, CssBaseline } from "@mui/material"
 
@@ -13,19 +13,27 @@ import DashboardLayout from "./Components/layouts/DashboardLayout"
 import LoginPage from "./Components/pages/LoginPage"
 import CarritoPage from "./Components/pages/CarritoPage"
 import PerfilPage from "./Components/pages/PerfilPage"
-import { useSelector } from "react-redux"
+import { Login } from "./Redux/Actions/AuthActions"
+import { useDispatch } from "react-redux"
 
 function App() {
-  const auth = useSelector((store) => {
-    localStorage.setItem("login", "true")
-    return store.auth
-  })
+  const [auth, setAuth] = useState(false)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setAuth(true)
+      dispatch(Login())
+    } else {
+      setAuth(false)
+    }
+  }, [dispatch])
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        {auth ? <DashboardLayout /> : <PublicLayout />}
+        {!auth ? <PublicLayout /> : <DashboardLayout />}
         <Switch>
           <PublicRoute exact auth={auth} path="/login" component={LoginPage} />
           <PublicRoute

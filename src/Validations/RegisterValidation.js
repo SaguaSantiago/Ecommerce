@@ -1,7 +1,5 @@
 import * as yup from "yup"
 
-const obligatorio = "Este campo es obligatorio"
-
 export const RegisterValidation = yup.object({
   confirmPassword: yup
     .string()
