@@ -43,7 +43,7 @@ export default function HomePage() {
           </Grid>
         </Grid>
       </Grid>
-      <Products />
+      {/* <Products /> */}
     </>
   )
 }

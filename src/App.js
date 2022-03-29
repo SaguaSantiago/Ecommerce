@@ -13,19 +13,19 @@ import DashboardLayout from "./Components/layouts/DashboardLayout"
 import LoginPage from "./Components/pages/LoginPage"
 import CarritoPage from "./Components/pages/CarritoPage"
 import PerfilPage from "./Components/pages/PerfilPage"
-import { Login } from "./Redux/Actions/AuthActions"
-import { useDispatch } from "react-redux"
+// import { Login } from "./Redux/Actions/AuthActions"
+import { useDispatch, useSelector } from "react-redux"
+import { login } from "./Modules/api"
 
 function App() {
-  const [auth, setAuth] = useState(false)
   const dispatch = useDispatch()
+  const { isAuthenticated } = useSelector((auth) => auth)
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      setAuth(true)
-      dispatch(Login())
+      dispatch(login())
     } else {
-      setAuth(false)
+      console.log("no login")
     }
   }, [dispatch])
 
@@ -33,28 +33,33 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        {!auth ? <PublicLayout /> : <DashboardLayout />}
+        {!isAuthenticated ? <PublicLayout /> : <DashboardLayout />}
         <Switch>
-          <PublicRoute exact auth={auth} path="/login" component={LoginPage} />
           <PublicRoute
             exact
-            auth={auth}
+            auth={isAuthenticated}
+            path="/login"
+            component={LoginPage}
+          />
+          <PublicRoute
+            exact
+            auth={isAuthenticated}
             path="/register"
             component={RegisterPage}
           />
           <PrivateRoute
             exact
-            auth={auth}
+            auth={isAuthenticated}
             path="/carrito"
             component={CarritoPage}
           />
           <PrivateRoute
             exact
-            auth={auth}
+            auth={isAuthenticated}
             path="/perfil"
             component={PerfilPage}
           />
-          <Route exact auth={auth} path="/" component={HomePage} />
+          <Route exact auth={isAuthenticated} path="/" component={HomePage} />
         </Switch>
       </Router>
     </ThemeProvider>
