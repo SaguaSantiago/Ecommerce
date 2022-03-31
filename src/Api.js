@@ -1,0 +1,20 @@
+module.exports = {
+  users: [
+    {
+      Name: "Santiago",
+      LastName: "Sagua",
+      UserName: "santi1",
+      Email: "saguasantiago@gmail.com",
+      password: "santy123",
+      authToken: "kjhkjhgkjkasdas",
+    },
+    {
+      Name: "Aaron",
+      LastName: "Piniero",
+      UserName: "Aaron1",
+      Email: "aaron@gmail.com",
+      password: "aaron123",
+      authToken: "12y312jhasgda",
+    },
+  ],
+}

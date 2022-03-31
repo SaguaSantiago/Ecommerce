@@ -1,3 +1,5 @@
+import { request } from "./helpers"
+
 const tokenSimulation = "3215456442132"
 
 const promesa = new Promise((resolve, reject) => {
@@ -12,9 +14,5 @@ const promesa = new Promise((resolve, reject) => {
   reject("ocurrio un error")
 })
 
-export const login = () => {
-  const data = promesa
-  localStorage.setItem("token", tokenSimulation)
-  return data
-}
+export const login = (params) => request("GET", params)
 export const logoutToken = () => localStorage.removeItem("token")

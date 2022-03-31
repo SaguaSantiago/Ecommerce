@@ -1,6 +1,7 @@
+import axios from "axios"
 import { ActionTypes } from "../Contants/Action-Types"
 import * as api from "./../../Modules/api"
-
+import Api from "../../Api"
 
 /* Login */
 export const loginRequest = (payload) => {
@@ -23,54 +24,51 @@ export const loginFailure = () => {
   }
 }
 
+const petition = () => {
+  return axios.get(Api).then((data) => console.log(data))
+}
+
 export const login = (params) => {
   return async (dispatch) => {
-    dispatch(loginRequest(params))
-    const data = await api
-      .login()
-      .then((data) => {
-        console.log(data)
-        return dispatch(loginSuccess(data))
-      })
-      .catch(({ message }) => {
-        return dispatch(loginFailure())
-      })
+    try {
+      const data = await petition()
+      console.log(data)
+    } catch {}
   }
 }
 
 /* logout */
 
-export const logout = ()=> {
+export const logout = () => {
   return {
-    type: ActionTypes.LOGOUT
+    type: ActionTypes.LOGOUT,
   }
 }
 
-export const Logout = ()=> {
-  return (dispatch)=> {
+export const Logout = () => {
+  return (dispatch) => {
     api.logoutToken()
     dispatch(logout)
   }
 }
 
-
 /* Sign Up*/
 
-export const signUpRequest = ()=> {
+export const signUpRequest = () => {
   return {
     type: ActionTypes.SIGN_UP_REQUEST,
   }
 }
 
 export const signUPSuccess = (payload) => {
-  return{
+  return {
     type: ActionTypes.SIGN_UP_SUCCESS,
-    payload
+    payload,
   }
 }
 
 export const signUpFailure = () => {
   return {
-    type: ActionTypes.SIGN_UP_FAILURE
+    type: ActionTypes.SIGN_UP_FAILURE,
   }
-} 
+}
