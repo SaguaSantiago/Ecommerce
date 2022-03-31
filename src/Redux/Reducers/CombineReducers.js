@@ -2,5 +2,5 @@ import { combineReducers } from "redux"
 import AuthReducer from "./AuthReducer"
 
 export const Reducers = combineReducers({
-  token: AuthReducer,
-})
+  Auth: AuthReducer,
+}) 

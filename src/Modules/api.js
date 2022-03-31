@@ -14,6 +14,7 @@ const promesa = new Promise((resolve, reject) => {
 
 export const login = () => {
   const data = promesa
+  localStorage.setItem("token", tokenSimulation)
   return data
 }
-export const logout = () => localStorage.removeItem("token")
+export const logoutToken = () => localStorage.removeItem("token")

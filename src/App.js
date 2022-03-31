@@ -13,18 +13,19 @@ import DashboardLayout from "./Components/layouts/DashboardLayout"
 import LoginPage from "./Components/pages/LoginPage"
 import CarritoPage from "./Components/pages/CarritoPage"
 import PerfilPage from "./Components/pages/PerfilPage"
-// import { Login } from "./Redux/Actions/AuthActions"
-import { useDispatch, useSelector } from "react-redux"
-import { login } from "./Modules/api"
+// import { Login } from "./Redux/Actions/AuthActions"import { useDispatch, useSelector } from "react-redux"
+import { login } from "./Redux/Actions/AuthActions"
 
 function App() {
   const dispatch = useDispatch()
-  const { isAuthenticated } = useSelector((auth) => auth)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       dispatch(login())
+      setIsAuthenticated(true)
     } else {
+      setIsAuthenticated(false)
       console.log("no login")
     }
   }, [dispatch])
@@ -33,7 +34,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        {!isAuthenticated ? <PublicLayout /> : <DashboardLayout />}
+        {isAuthenticated ? <DashboardLayout /> : <PublicLayout />}
         <Switch>
           <PublicRoute
             exact

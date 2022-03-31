@@ -1,10 +1,6 @@
 import { ActionTypes } from "../Contants/Action-Types"
 import * as api from "./../../Modules/api"
 
-const tokenSimulation = "3215456442132"
-
-const setItem = () => localStorage.setItem("token", tokenSimulation)
-const removeItem = () => localStorage.removeItem("token")
 
 /* Login */
 export const loginRequest = (payload) => {
@@ -42,16 +38,39 @@ export const login = (params) => {
   }
 }
 
-// export const Login = () => {
-//   return async (dispatch) => {
-//     setItem()
-//     dispatch({ type: ActionTypes.AUTH_LOGIN, token: tokenSimulation })
-//   }
-// }
+/* logout */
 
-export const SignOff = () => {
-  return (dispatch) => {
-    removeItem()
-    dispatch({ type: ActionTypes.AUTH_SIGN_OFF, token: null })
+export const logout = ()=> {
+  return {
+    type: ActionTypes.LOGOUT
   }
 }
+
+export const Logout = ()=> {
+  return (dispatch)=> {
+    api.logoutToken()
+    dispatch(logout)
+  }
+}
+
+
+/* Sign Up*/
+
+export const signUpRequest = ()=> {
+  return {
+    type: ActionTypes.SIGN_UP_REQUEST,
+  }
+}
+
+export const signUPSuccess = (payload) => {
+  return{
+    type: ActionTypes.SIGN_UP_SUCCESS,
+    payload
+  }
+}
+
+export const signUpFailure = () => {
+  return {
+    type: ActionTypes.SIGN_UP_FAILURE
+  }
+} 

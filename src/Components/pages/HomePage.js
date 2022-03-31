@@ -2,7 +2,7 @@ import React from "react"
 import { Grid, Typography } from "@mui/material"
 import { Styles } from "./../../Styles"
 import Products from "../Products/Index"
-import { SignOff } from "../../Redux/Actions/AuthActions"
+import { Logout } from "../../Redux/Actions/AuthActions"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 
@@ -14,7 +14,7 @@ export default function HomePage() {
   const history = useHistory()
 
   const handleClick = () => {
-    dispatch(SignOff())
+    dispatch(Logout())
     history.push("/")
   }
 

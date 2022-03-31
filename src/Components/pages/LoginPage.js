@@ -5,18 +5,18 @@ import { Grid } from "@mui/material"
 import { Formik } from "formik"
 import { textfieldsLoginObject } from "../../objects"
 import { LoginValidation } from "../../Validations/LoginValidation"
-import { useDispatch } from "react-redux"
-import { Login } from "../../Redux/Actions/AuthActions"
+import { useDispatch, useSelector } from "react-redux"
+import { login } from "../../Redux/Actions/AuthActions"
 import CustomForm from "../CustomComponents/CustomForm"
 import CustomTextfield from "../CustomComponents/CustomTextfield"
 import { useHistory } from "react-router-dom"
 
 export default function LoginPage() {
   const dispatch = useDispatch()
+  const { loading } = useSelector((auth) => auth)
   const history = useHistory()
-
   const handleSubmit = (valores) => {
-    dispatch(Login())
+    dispatch(login())
     setTimeout(() => {
       history.push("/")
       console.log(valores)
