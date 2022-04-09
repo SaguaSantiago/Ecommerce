@@ -2,16 +2,17 @@ import React from "react"
 import { Grid, Typography } from "@mui/material"
 import { Styles } from "./../../Styles"
 import FlexCards from "../CustomComponents/Cards/FlexCards"
-import Products from "../Products/Index"
 import { Logout } from "../../Redux/Actions/AuthActions"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
+import ProductsCard from "../Products/ProductsCard"
 
 const useStyles = Styles.homeStyles
 
 export default function HomePage() {
   const classes = useStyles()
   const { isAuthenticated } = useSelector((state) => state.Auth)
+  const { products } = useSelector((state) => state.Products)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -48,11 +49,17 @@ export default function HomePage() {
         </Grid>
       </Grid>
       <FlexCards>
-        <Products />
-        <Products />
-        <Products />
-        <Products />
-        <Products />
+        {products
+          ? products.map(({ image, price, title, id }) => (
+              <ProductsCard
+                id={id}
+                key={id}
+                image={image}
+                price={price}
+                title={title}
+              />
+            ))
+          : null}
       </FlexCards>
     </>
   )

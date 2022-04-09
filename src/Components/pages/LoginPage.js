@@ -15,11 +15,14 @@ export default function LoginPage() {
   const dispatch = useDispatch()
   const { loading } = useSelector((auth) => auth)
   const history = useHistory()
-  const handleSubmit = (valores) => {
-    dispatch(login(valores))
+  const handleSubmit = ({ userName, password }) => {
+    const values = {
+      userName: userName.toLowerCase(),
+      password: password.toLowerCase(),
+    }
+    dispatch(login(values))
     setTimeout(() => {
       history.push("/")
-      console.log(valores)
     }, 1000)
   }
 

@@ -12,9 +12,12 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import { useHistory } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 export default function LayoutMenu() {
   let history = useHistory()
+  const { profile } = useSelector((state) => state.Auth)
+  const avatarCaracter = profile.UserName.charAt(0)
   const [isOpen, setIsOpen] = useState(false)
   function handleOpen() {
     setIsOpen(true)
@@ -30,7 +33,7 @@ export default function LayoutMenu() {
       <div>
         <Tooltip title="Account settings">
           <IconButton onClick={handleClick} size="small">
-            <Avatar>U</Avatar>
+            <Avatar>{avatarCaracter}</Avatar>
           </IconButton>
         </Tooltip>
       </div>

@@ -13,14 +13,14 @@ import DashboardLayout from "./Components/layouts/DashboardLayout"
 import LoginPage from "./Components/pages/LoginPage"
 import CarritoPage from "./Components/pages/CarritoPage"
 import PerfilPage from "./Components/pages/PerfilPage"
-import { login, loginInit } from "./Redux/Actions/AuthActions"
+import { loginInit } from "./Redux/Actions/AuthActions"
 import { useDispatch, useSelector } from "react-redux"
 import { Getall } from "./Redux/Actions/Products"
+import ProductDetails from "./Components/pages/ProductDetails"
 
 function App() {
   const dispatch = useDispatch()
   const { isAuthenticated } = useSelector((state) => state.Auth)
-  console.log(isAuthenticated)
 
   useEffect(() => {
     const userStorageData = localStorage.getItem("User")
@@ -64,6 +64,12 @@ function App() {
             auth={isAuthenticated}
             path="/perfil"
             component={PerfilPage}
+          />
+          <PrivateRoute
+            exact
+            auth={isAuthenticated}
+            path="/product/:id"
+            component={ProductDetails}
           />
           <Route exact auth={isAuthenticated} path="/" component={HomePage} />
         </Switch>

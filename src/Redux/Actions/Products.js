@@ -1,4 +1,3 @@
-import { GetAllRequest } from "../../Modules/Functions"
 import { ActionTypes } from "../Contants/Action-Types"
 import * as api from "./../../Modules/api"
 
@@ -23,13 +22,12 @@ export const ProductsFailure = () => {
 
 export const Getall = () => {
   return async (dispatch) => {
-    // try {
-    dispatch(ProductsRequest())
-    const data = await api.getAllItem().then((data) => console.log(data))
-    // console.log(data)
-    dispatch(ProductsSuccess(data))
-    // } catch {
-    //   console.log("algo sucedio")
-    // }
+    try {
+      dispatch(ProductsRequest())
+      const data = await api.getAllItem.then((res) => res)
+      dispatch(ProductsSuccess(data))
+    } catch {
+      console.log("algo sucedio")
+    }
   }
 }

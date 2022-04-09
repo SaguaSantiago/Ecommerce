@@ -7,7 +7,6 @@ export const datesValidation = (dates, params) => {
 
   const passwordValue = dates.find((date) => date.password === password)
   const userNameValue = dates.find((date) => date.UserName === paramsUserName)
-  console.log("1", userNameValue, "2", passwordValue)
 
   if (
     userNameValue !== undefined &&
