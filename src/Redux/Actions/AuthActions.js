@@ -1,7 +1,6 @@
-import axios from "axios"
+import { datesValidation, setItemStorage } from "../../Modules/Functions"
 import { ActionTypes } from "../Contants/Action-Types"
 import * as api from "./../../Modules/api"
-import Api from "../../Api"
 
 /* Login */
 export const loginRequest = (payload) => {
@@ -24,17 +23,28 @@ export const loginFailure = () => {
   }
 }
 
-const petition = () => {
-  return axios.get(Api).then((data) => console.log(data))
-}
-
 export const login = (params) => {
   return async (dispatch) => {
+    dispatch(loginRequest())
     try {
-      const data = await petition()
-      console.log(data)
-    } catch {}
+      const { data } = await api.login()
+      const validate = datesValidation(data, params)
+
+      if (validate.validate === true) {
+        dispatch(loginSuccess(validate.userData))
+
+        const validateDates = JSON.stringify(validate.userData)
+        // console.log(validateDates)
+        setItemStorage(validateDates)
+      } else console.log(validate.error)
+    } catch ({ menssage }) {
+      dispatch(loginFailure())
+    }
   }
+}
+
+export const loginInit = (params) => {
+  return (dispatch) => dispatch(loginSuccess(params))
 }
 
 /* logout */
@@ -70,5 +80,17 @@ export const signUPSuccess = (payload) => {
 export const signUpFailure = () => {
   return {
     type: ActionTypes.SIGN_UP_FAILURE,
+  }
+}
+
+export const signUp = (data) => {
+  return async (dispatch) => {
+    dispatch(signUpRequest)
+    try {
+      await api.signUp(data)
+      dispatch(signUPSuccess(data))
+    } catch {
+      console.log("algo sucedió")
+    }
   }
 }

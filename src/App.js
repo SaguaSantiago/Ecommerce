@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 
 import { ThemeProvider, CssBaseline } from "@mui/material"
 
@@ -13,23 +13,27 @@ import DashboardLayout from "./Components/layouts/DashboardLayout"
 import LoginPage from "./Components/pages/LoginPage"
 import CarritoPage from "./Components/pages/CarritoPage"
 import PerfilPage from "./Components/pages/PerfilPage"
-// import { Login } from "./Redux/Actions/AuthActions"
-import { login } from "./Redux/Actions/AuthActions"
-import { useDispatch } from "react-redux"
+import { login, loginInit } from "./Redux/Actions/AuthActions"
+import { useDispatch, useSelector } from "react-redux"
+import { Getall } from "./Redux/Actions/Products"
 
 function App() {
   const dispatch = useDispatch()
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const { isAuthenticated } = useSelector((state) => state.Auth)
+  console.log(isAuthenticated)
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      dispatch(login())
-      setIsAuthenticated(true)
+    const userStorageData = localStorage.getItem("User")
+    if (userStorageData) {
+      dispatch(loginInit(JSON.parse(userStorageData)))
     } else {
-      setIsAuthenticated(false)
       console.log("no login")
     }
   }, [dispatch])
+
+  useEffect(() => {
+    dispatch(Getall())
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>

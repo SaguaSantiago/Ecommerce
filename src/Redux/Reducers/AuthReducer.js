@@ -2,7 +2,6 @@ import { ActionTypes } from "../Contants/Action-Types"
 
 const initialState = {
   isAuthenticated: false,
-  token: null,
   profile: null,
   loading: false,
 }
@@ -15,11 +14,9 @@ const auth = (state = initialState, { type, payload }) => {
         loading: true,
       }
     case ActionTypes.LOGIN_SUCCESS:
-      const { user, token } = payload
       return {
         ...state,
-        profile: user,
-        token,
+        profile: payload,
         isAuthenticated: true,
         loading: false,
       }
@@ -34,7 +31,7 @@ const auth = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isAuthenticated: false,
-        token: null,
+        // token: null,
         profile: null,
         loading: false,
       }

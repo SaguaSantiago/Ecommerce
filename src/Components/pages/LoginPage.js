@@ -16,7 +16,7 @@ export default function LoginPage() {
   const { loading } = useSelector((auth) => auth)
   const history = useHistory()
   const handleSubmit = (valores) => {
-    dispatch(login())
+    dispatch(login(valores))
     setTimeout(() => {
       history.push("/")
       console.log(valores)
@@ -26,7 +26,7 @@ export default function LoginPage() {
   return (
     <Formik
       initialValues={{
-        usuary: "",
+        userName: "",
         password: "",
       }}
       onSubmit={handleSubmit}

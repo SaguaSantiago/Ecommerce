@@ -4,20 +4,20 @@ export const RegisterValidation = yup.object({
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], "Las contraseñas deben coincidir"),
-  name: yup
+  Name: yup
     .string()
     .required("Este campo es obligatorio")
     .matches(/^[aA-zZ\s]+$/, "Debe contener solo letras"),
-  lastName: yup
+  LastName: yup
     .string()
     .required("Este campo es obligatorio")
     .matches(/^[aA-zZ\s]+$/, "Debe contener solo letras"),
-  userName: yup
+  UserName: yup
     .string()
     .required("Este campo es obligatorio")
     .min(6, "Debe contener al menos 6 caracteres")
     .max(20, "Debe contener un maximo de 15 letras"),
-  email: yup.string().email().required("Este campo es obligatorio"),
+  Email: yup.string().email().required("Este campo es obligatorio"),
   password: yup.string().required("Este campo es obligatorio"),
   // .matches(
   //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,

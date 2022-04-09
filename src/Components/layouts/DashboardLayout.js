@@ -30,15 +30,10 @@ export default function Layout() {
         <Toolbar>
           <ThemeProvider theme={theme}>
             <div className={classes.title}>
-              <Button color="inherit">
-                <Typography variant="overline">
-                  <NavLink className={classes.NavLink} to="/">
-                    Ecommerce
-                  </NavLink>
-                </Typography>
-              </Button>
+              <NavLink className={classes.NavLink} to="/">
+                <Typography variant="overline">Ecommerce</Typography>
+              </NavLink>
             </div>
-
             <LayoutMenu />
           </ThemeProvider>
         </Toolbar>

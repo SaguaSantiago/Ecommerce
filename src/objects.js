@@ -37,7 +37,7 @@ export const DashboardNavButtons = [
 
 export const textfieldsLoginObject = [
   {
-    name: "usuary",
+    name: "userName",
     label: "Nombre de Usuario",
     key: 1,
     type: "text",
@@ -49,3 +49,30 @@ export const textfieldsLoginObject = [
     type: "password",
   },
 ]
+
+export const registerTextfields = [
+  { name: "Name", label: "Nombre", type: "text" },
+
+  { name: "LastName", label: "Apellido", type: "text" },
+  {
+    name: "UserName",
+    label: "Nombre de Usuario",
+    type: "text",
+  },
+  {
+    name: "Email",
+    label: "Email",
+    type: "email",
+  },
+  {
+    name: "password",
+    label: "Contraseña",
+    type: "password",
+  },
+  {
+    name: "confirmPassword",
+    label: "Confirmar Contraseña",
+    type: "password",
+  },
+]
+

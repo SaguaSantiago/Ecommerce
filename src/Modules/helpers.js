@@ -1,13 +1,18 @@
 import axios from "axios"
-import Api from "../Api"
 
-
-export const request = (method, data) => {
-  const url = Api
-
-    return axios({
-      method,
-      url,
-      data,
-    })
+export const request = (method, data, url) => {
+  function urlValidate() {
+    if (url) {
+      return url
+    } else {
+      return "http://localhost:3001/users"
+    }
+  }
+  const requestUrl = urlValidate()
+  console.log(requestUrl)
+  return axios({
+    method,
+    data,
+    requestUrl,
+  })
 }
