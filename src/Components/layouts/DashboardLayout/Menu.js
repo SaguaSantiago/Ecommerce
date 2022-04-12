@@ -17,7 +17,7 @@ import { useSelector } from "react-redux"
 export default function LayoutMenu() {
   let history = useHistory()
   const { profile } = useSelector((state) => state.Auth)
-  const avatarCaracter = profile.UserName.charAt(0)
+  const avatarCaracter = profile.UserName.charAt(0).toUpperCase()
   const [isOpen, setIsOpen] = useState(false)
   function handleOpen() {
     setIsOpen(true)
